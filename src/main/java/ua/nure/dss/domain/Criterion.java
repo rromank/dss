@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 @Entity
@@ -19,7 +20,8 @@ public class Criterion implements Serializable {
     private String name;
 
     @Column
-    private Double range;
+    @Min(0)
+    private Integer range;
 
     @Column
     private Double weight;
@@ -52,11 +54,11 @@ public class Criterion implements Serializable {
         this.name = name;
     }
 
-    public Double getRange() {
+    public Integer getRange() {
         return range;
     }
 
-    public void setRange(Double range) {
+    public void setRange(Integer range) {
         this.range = range;
     }
 
