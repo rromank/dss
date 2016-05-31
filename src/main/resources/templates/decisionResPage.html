@@ -1,34 +1,41 @@
-<!DOCTYPE html>
+<div class="row" th:fragment="content">
+    <blockquote>
+        <blockquote>
+            <p><b>Метод парных сравнений и методы спортивного типа</b></p>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-    <title>DSS: Decision result page</title>
-    <style type="text/css">
-        table {
-            border: 2px solid #999;
-        }
+            <p>Попарное сравнение состоит в указании более предпочтительного объекта в каждой паре (иногда разрешается также
+                заявлять, что они оба равноценны или несравнимы). Метод попарного сравнения применяется обычно, чтобы
+                выявить предпочтения экспертов «в чистом виде». Считается , что качественное сравнение двух объектов сделать
+                гораздо легче, чем выражать свои предпочтения в балльной или ранговой шкале; этот метод оценки не навязывает
+                эксперту априорных условий. Метод попарного сравнения еще относят иногда к методам спортивного типа, понимая
+                под этим то, как проводится выбор лучшего игрока или команды в различных видах спорта (боксе, футболе,
+                шахматах и т.д.).</p>
 
-        td {
-            width: 100px;
-            height: 62px;
-            border: 1px solid #666;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-<table style="float: left">
-    <thead>
-    <tr>
-        <th th:text="${best.alternative.name}"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="m : ${best.marks}">
-        <td th:text="${m.criterion.name}"></td>
-        <td th:text="${m.value}"></td>
-    </tr>
-    </tbody>
-</table>
-</body>
-</html>
+            <p>«<b>Игры на подтверждение лидерства</b>» - сравнение альтернатив происходит так, как это происходит в шахматах или в
+                боксе, т.е. пока в процессе парных сравнений альтернатив одна альтернатива оказывается лучшей, она побеждает
+                и считается лидером; далее лидер сравнивается в паре с другой альтернативой, та альтернатива, которая
+                побеждает, снова становиться лидером </p>
+        </blockquote>
+
+    </blockquote>
+    <div class="col-md-3"></div>
+    <div class="col-md-1 col-md-offset-2">
+        <h4><p><b>Decision result</b></p></h4>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th colspan="2" th:text="${best.alternative.name}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="m : ${best.marks}">
+                    <td th:text="${m.criterion.name}"></td>
+                    <td th:text="${m.value}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-5"></div>
+</div>
