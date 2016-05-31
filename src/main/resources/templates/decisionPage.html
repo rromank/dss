@@ -3,9 +3,63 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>DSS: Decision page</title>
+    <style type="text/css">
+        table {
+            border: 2px solid #999;
+        }
+
+        td {
+            width: 100px;
+            height: 62px;
+            border: 1px solid #666;
+            text-align: center;
+        }
+        a.button {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            appearance: button;
+
+            text-decoration: none;
+            color: initial;
+
+            width: 30px;
+            height: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <h1>Make decision</h1>
-<span th:text="${first.name}"/>
+
+<div>
+    <table style="float: left">
+        <thead>
+        <tr>
+            <th th:text="${first.alternative.name}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${first.marks}">
+            <td th:text="${m.criterion.name}"></td>
+            <td th:text="${m.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="button" th:href="@{/decision(id=${first.alternative.id},step=${step})}">&#60;</a>
+    <a class="button" th:href="@{/decision(id=${second.alternative.id},step=${step})}">&#62;</a>
+    <table style="display: inline-block">
+        <thead>
+        <tr>
+            <th th:text="${second.alternative.name}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${second.marks}">
+            <td th:text="${m.criterion.name}"></td>
+            <td th:text="${m.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
