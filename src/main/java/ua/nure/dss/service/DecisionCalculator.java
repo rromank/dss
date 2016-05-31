@@ -1,6 +1,7 @@
 package ua.nure.dss.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration;
 import org.springframework.stereotype.Service;
 
 import ua.nure.dss.domain.Alternative;
@@ -39,6 +40,29 @@ public class DecisionCalculator {
             results.add(res);
         }
         return results;
+    }
+
+    public boolean shouldCompareMore(Integer step){
+        return step == null || alternativeRepository.findAll().size() != step + 2;
+    }
+
+    public Alternative[] getAlternativesToCompare(Integer step, Long bestId){
+        List<Alternative> alternatives = alternativeRepository.findAll();
+        Alternative[] res = new Alternative[2];
+        if (step == null){
+            res[0] = alternatives.get(0);
+            res[1] = alternatives.get(1);
+        }else{
+            res[1] = alternatives.get(step + 1);
+            //todo get by id
+            for (Alternative alt : alternatives){
+                if (alt.getId().equals(bestId)){
+                    res[0] = alt;
+                    break;
+                }
+            }
+        }
+        return res;
     }
 
 }
