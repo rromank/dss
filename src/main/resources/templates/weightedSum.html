@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>DSS: Weighred Summa calculation</title>
+</head>
+<body>
+<h1>Weighred Summa</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Alternative</th>
+        <th>General mark</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r : ${results}">
+        <td th:text="${r.alternative.name}">alternative name</td>
+        <td th:text="${r.generalMark}">general mark</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

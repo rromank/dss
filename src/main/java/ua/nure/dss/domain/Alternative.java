@@ -1,10 +1,14 @@
 package ua.nure.dss.domain;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Alternative implements Serializable {
@@ -17,6 +21,9 @@ public class Alternative implements Serializable {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "alternative", cascade = CascadeType.ALL)
+    private List<Mark> marks;
 
     public Long getId() {
         return id;
@@ -33,4 +40,9 @@ public class Alternative implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
 }
