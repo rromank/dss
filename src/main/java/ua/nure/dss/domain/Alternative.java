@@ -22,7 +22,7 @@ public class Alternative implements Serializable {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "alternative", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alternative")
     private List<Mark> marks;
 
     public Long getId() {

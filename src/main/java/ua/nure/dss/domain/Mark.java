@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -26,6 +27,7 @@ public class Mark implements Serializable {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "alternative_id")
     private Alternative alternative;
 
     @Column
