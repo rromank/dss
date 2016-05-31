@@ -29,9 +29,14 @@ public class Mark implements Serializable {
     private Alternative alternative;
 
     @Column
+    @NotNull
     @Min(0)
     @Max(5)
     private Integer mark;
+
+    @Column
+    @NotNull
+    private String value;
 
     public Long getId() {
         return id;
@@ -63,5 +68,13 @@ public class Mark implements Serializable {
 
     public void setMark(Integer mark) {
         this.mark = mark;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

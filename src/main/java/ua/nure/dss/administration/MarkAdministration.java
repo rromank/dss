@@ -24,6 +24,7 @@ public class MarkAdministration extends AdministrationConfiguration<Mark> {
         return fragmentBuilder
                 .field("criterion").caption("Criterion")
                 .field("alternative").caption("Alternative")
+                .field("value").caption("Value")
                 .field("mark").caption("Mark").enumeration(
                         EnumElement.element(1, "F"),
                         EnumElement.element(2, "D"),
