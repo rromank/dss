@@ -1,8 +1,15 @@
 package ua.nure.dss.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Mark implements Serializable {
@@ -17,17 +24,14 @@ public class Mark implements Serializable {
     @ManyToOne
     private Criterion criterion;
 
-    @Column
-    private String name;
+    @NotNull
+    @ManyToOne
+    private Alternative alternative;
 
     @Column
-    private Double range;
-
-    @Column
-    private Double numMark;
-
-    @Column
-    private Double normMark;
+    @Min(0)
+    @Max(5)
+    private Integer mark;
 
     public Long getId() {
         return id;
@@ -45,35 +49,19 @@ public class Mark implements Serializable {
         this.criterion = criterion;
     }
 
-    public String getName() {
-        return name;
+    public Alternative getAlternative() {
+        return alternative;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAlternative(Alternative alternative) {
+        this.alternative = alternative;
     }
 
-    public Double getRange() {
-        return range;
+    public Integer getMark() {
+        return mark;
     }
 
-    public void setRange(Double range) {
-        this.range = range;
-    }
-
-    public Double getNumMark() {
-        return numMark;
-    }
-
-    public void setNumMark(Double numMark) {
-        this.numMark = numMark;
-    }
-
-    public Double getNormMark() {
-        return normMark;
-    }
-
-    public void setNormMark(Double normMark) {
-        this.normMark = normMark;
+    public void setMark(Integer mark) {
+        this.mark = mark;
     }
 }

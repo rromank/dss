@@ -11,8 +11,8 @@ public class LprAdministration extends AdministrationConfiguration<Lpr> {
     public EntityMetadataConfigurationUnit configuration(EntityMetadataConfigurationUnitBuilder configurationBuilder) {
         return configurationBuilder
                 .nameField("name")
-                .singularName("LRP")
-                .pluralName("LRP")
+                .singularName("LPR")
+                .pluralName("LPR")
                 .build();
     }
 

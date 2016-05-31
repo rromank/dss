@@ -1,11 +1,15 @@
 package ua.nure.dss.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.io.Serializable;
 
 @Entity
 public class Criterion implements Serializable {
@@ -24,13 +28,17 @@ public class Criterion implements Serializable {
     private Integer range;
 
     @Column
-    private Double weight;
+    @Min(0)
+    @Max(5)
+    private Integer weight;
 
     @Column
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private CriterionType criterionType;
 
     @Column
-    private String optimType;
+    @Enumerated(EnumType.STRING)
+    private CriterionOptimType criterionOptimType;
 
     @Column
     private String unit;
@@ -62,28 +70,28 @@ public class Criterion implements Serializable {
         this.range = range;
     }
 
-    public Double getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
-    public String getType() {
-        return type;
+    public CriterionType getCriterionType() {
+        return criterionType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCriterionType(CriterionType criterionType) {
+        this.criterionType = criterionType;
     }
 
-    public String getOptimType() {
-        return optimType;
+    public CriterionOptimType getCriterionOptimType() {
+        return criterionOptimType;
     }
 
-    public void setOptimType(String optimType) {
-        this.optimType = optimType;
+    public void setCriterionOptimType(CriterionOptimType criterionOptimType) {
+        this.criterionOptimType = criterionOptimType;
     }
 
     public String getUnit() {

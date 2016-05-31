@@ -1,5 +1,7 @@
 package ua.nure.dss;
 
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
@@ -21,8 +23,6 @@ import org.springframework.core.annotation.Order;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
 @Configuration
 @ComponentScan
@@ -46,7 +46,6 @@ public class LightAdminBootApplication extends SpringBootServletInitializer {
         };
     }
 	
-	/* https://github.com/spring-projects/spring-boot/issues/2825#issuecomment-93479758 */
     @Bean
     public EmbeddedServletContainerCustomizer servletContainerCustomizer() {
         return new EmbeddedServletContainerCustomizer() {
