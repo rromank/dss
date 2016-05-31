@@ -17,12 +17,22 @@
             <tr>
                 <th>Alternative</th>
                 <th>General mark</th>
+                <th>Calculations</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="r : ${results}">
                 <td th:text="${r.alternative.name}">alternative name</td>
                 <td th:text="${r.generalMark}">general mark</td>
+                <td>
+                    <span>A = </span>
+                    <span th:each="wm,iterStat : ${r.weightMarks}">
+                        <span th:text="${wm.weight}"></span>
+                        <span> * </span>
+                        <span th:text="${wm.mark}"></span>
+                        <span th:text="${iterStat.last}? '' : '+'"></span>
+                    </span>
+                </td>
             </tr>
             </tbody>
         </table>
