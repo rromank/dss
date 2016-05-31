@@ -81,6 +81,12 @@
             <artifactId>h2</artifactId>
             <version>1.4.191</version>
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring3</artifactId>
+            <version>2.1.4.RELEASE</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>lightadmin-boot</finalName>

@@ -9,6 +9,7 @@ import org.lightadmin.api.config.LightAdmin;
 import org.lightadmin.core.config.LightAdminWebApplicationInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -20,6 +21,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import ua.nure.dss.ui.thymeleaf.interceptor.ThymeleafLayoutInterceptor;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,6 +32,7 @@ import javax.servlet.ServletException;
 @ComponentScan
 @EnableAutoConfiguration
 @Order(HIGHEST_PRECEDENCE)
+@SpringBootApplication(exclude={org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration.class})
 public class LightAdminBootApplication extends SpringBootServletInitializer {
 
     @Bean
@@ -82,4 +87,15 @@ public class LightAdminBootApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(LightAdminBootApplication.class);
     }
+
+    @Bean
+    public WebMvcConfigurerAdapter adapter() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                registry.addInterceptor(new ThymeleafLayoutInterceptor());
+            }
+        };
+    }
+
 }

@@ -1,24 +1,30 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-    <title>DSS: Weighred Summa calculation</title>
-</head>
-<body>
-<h1>Weighred Summa</h1>
+<div class="row" th:fragment="content">
+    <div class="col-md-8 col-md-offset-2">
+        <blockquote>
+            <p>Weighted sum model - is the best known and simplest multi-criteria decision analysis method for
+                evaluating a number of alternatives in terms of a number of decision criteria.</p>
+            <p>In general, suppose that a given MCDA problem is defined on m alternatives and n decision criteria.
+                Furthermore, let us assume that all the criteria are benefit criteria, that is, the higher the values
+                are, the better it is. Next suppose that wj denotes the relative weight of importance of the criterion
+                Cj and aij is the performance value of alternative Ai when it is evaluated in terms of criterion Cj.
+                Then, the total (i.e., when all the criteria are considered simultaneously) importance of alternative
+                Ai, denoted as AiWSM-score, is defined as follows:</p>
+            <img src="/images/Weighted_sum_model.png"/>
+        </blockquote>
 
-<table>
-    <thead>
-    <tr>
-        <th>Alternative</th>
-        <th>General mark</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="r : ${results}">
-        <td th:text="${r.alternative.name}">alternative name</td>
-        <td th:text="${r.generalMark}">general mark</td>
-    </tr>
-    </tbody>
-</table>
-</body>
-</html>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Alternative</th>
+                <th>General mark</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${results}">
+                <td th:text="${r.alternative.name}">alternative name</td>
+                <td th:text="${r.generalMark}">general mark</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
