@@ -4,21 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ua.nure.dss.domain.Alternative;
 import ua.nure.dss.domain.CompareEntity;
+import ua.nure.dss.domain.VotingRes;
 import ua.nure.dss.repository.AlternativeRepository;
 import ua.nure.dss.repository.HotelRepository;
 import ua.nure.dss.service.DecisionCalculator;
+import ua.nure.dss.service.VotingService;
 
 @Controller
 public class ApplicationController {
 
     @Autowired
     private DecisionCalculator decisionCalculator;
+
+    @Autowired
+    private VotingService votingService;
 
     @Autowired
     private AlternativeRepository alternativeRepository;
@@ -44,6 +51,11 @@ public class ApplicationController {
         } else {
             return new ModelAndView("decisionResPage").addObject("best", decisionCalculator.getCompareEntity(alternId));
         }
-
     }
+
+    @RequestMapping("/bord_rule")
+    public ModelAndView calculateByBord() {
+        return new ModelAndView("bordPage").addObject("res", votingService.calculateByBord());
+    }
+
 }
