@@ -6,6 +6,7 @@
 package ua.nure.dss.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Map;
 public class VotingRes {
 
     private Map<Lpr, Map<Alternative, Integer>> votingRes;
+    Map<Lpr, List<Alternative>> kondorseVotingRes;
     private Map<Alternative, Integer> totalRes;
     private Alternative winner;
     private Integer points;
@@ -69,5 +71,13 @@ public class VotingRes {
 
     public void setTotalRes(Map<Alternative, Integer> totalRes) {
         this.totalRes = totalRes;
+    }
+
+    public Map<Lpr, List<Alternative>> getKondorseVotingRes() {
+        return kondorseVotingRes;
+    }
+
+    public void setKondorseVotingRes(Map<Lpr, List<Alternative>> kondorseVotingRes) {
+        this.kondorseVotingRes = kondorseVotingRes;
     }
 }

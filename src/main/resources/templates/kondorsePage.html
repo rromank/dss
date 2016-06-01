@@ -1,0 +1,47 @@
+<!--
+  ~ Canadian Tire Corporation, Ltd. Do not reproduce without permission in writing.
+  ~ Copyright (c) 2016 Canadian Tire Corporation, Ltd. All rights reserved.
+  -->
+
+<div class="row" th:fragment="content">
+    <blockquote>
+        <blockquote>
+            <p><b>Принцип Кондорсе</b></p>
+
+            <p>Кондорсе определил правило, по которому сравнение выбираемых альтернатив (кандидатов) производится с учётом полной ординалистской
+                информации о предпочтениях избирателей.</p>
+
+            <p>Согласно принципу Кондорсе, для определения истинной воли большинства необходимо, чтобы каждый голосующий проранжировал всех кандидатов
+                в порядке их предпочтения. После этого для каждой пары кандидатов определяется, сколько голосующих предпочитает одного кандидата
+                другому — формируется полная матрица попарных предпочтений избирателей.</p>
+            <p>На базе этой матрицы, используя транзитивность отношения предпочтения, можно попытаться построить коллективную ранжировку
+                кандидатов.</p>
+        </blockquote>
+    </blockquote>
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Marks</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mark : ${res.kondorseVotingRes}">
+                <td>
+                    <span th:text="${mark.key.name}"></span>
+                    <span>: </span>
+                    <span th:each="alt : ${mark.value}" th:text="${alt.name} + ';'"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <b>
+                <span>Winner </span>
+                <span th:text="${res.winner.name}"></span>
+            </b>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

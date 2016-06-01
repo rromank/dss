@@ -58,4 +58,9 @@ public class ApplicationController {
         return new ModelAndView("bordPage").addObject("res", votingService.calculateByBord());
     }
 
+    @RequestMapping("/kondorse_rule")
+    public ModelAndView calculateByCondorse(){
+        return new ModelAndView("kondorsePage").addObject("res", votingService.calculateByKondorse());
+    }
+
 }
