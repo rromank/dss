@@ -63,4 +63,9 @@ public class ApplicationController {
         return new ModelAndView("kondorsePage").addObject("res", votingService.calculateByKondorse());
     }
 
+    @RequestMapping("/koplend_rule")
+    public ModelAndView calculateByKoplend(){
+        return new ModelAndView("koplendPage").addObject("res", votingService.calculateByKoplend());
+    }
+
 }

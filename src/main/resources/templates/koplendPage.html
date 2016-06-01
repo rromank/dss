@@ -1,0 +1,42 @@
+<!--
+  ~ Canadian Tire Corporation, Ltd. Do not reproduce without permission in writing.
+  ~ Copyright (c) 2016 Canadian Tire Corporation, Ltd. All rights reserved.
+  -->
+
+<div class="row" th:fragment="content">
+    <blockquote>
+        <blockquote>
+            <p><b>Принцип Копленда</b></p>
+            <p>Сравним кандидата а с любым другим кандидатом x. Начислим ему +1, если для большинства а лучше за x, -1, если для большинства x лучше
+                за а, и x, xa, получаем оценку Копленда для а. Избираем кандидат, названный победителем за Коплендом, с наивысшей такой оценкой.</p>
+            <p>В данном правиле не указано, что делать в том случае, когда найдутся два или больше кандидаты с одинаковой оценкой Копленда. Допустимо,
+                что изберется тот кандидат, имя и фамилия которого стоит ближайшее по списку. </p>
+        </blockquote>
+    </blockquote>
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Marks</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mark : ${res.koplendVotingRes}">
+                <td>
+                    <span th:text="${mark.key.name}"></span>
+                    <span>: </span>
+                    <span th:text="${mark.value}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <b>
+                <span>Winner </span>
+                <span th:text="${res.winner.name}"></span>
+            </b>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>

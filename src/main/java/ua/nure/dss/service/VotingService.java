@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -60,15 +61,42 @@ public class VotingService {
         Alternative bestAlt = alts.get(0);
         for (int x = 1; x < alts.size(); x++) {
             int compareRes = compare(voting, bestAlt, alts.get(x));
-            if (compareRes > 0){
+            if (compareRes > 0) {
                 continue;
-            }else if (compareRes < 0){
+            } else if (compareRes < 0) {
                 bestAlt = alts.get(x);
             }
         }
         VotingRes res = new VotingRes();
         res.setWinner(bestAlt);
         res.setKondorseVotingRes(voting);
+        return res;
+    }
+
+    public VotingRes calculateByKoplend() {
+        Random rand = new Random();
+        List<Alternative> alts = alternativeRepository.findAll();
+        List<Lpr> lprs = lprRepository.findAll();
+        Map<Alternative, Integer> duel = alts.stream().collect(Collectors.toMap(a -> a, a -> 0));
+        for (Lpr lpr : lprs) {
+            for (int x = 0; x < alts.size() - 1; x++) {
+                Alternative alt = alts.get(x);
+                int winsAlt = 0;
+                for (int y = x + 1; y < alts.size(); y++) {
+                    if (rand.nextBoolean()) {
+                        winsAlt++;
+                        duel.put(alts.get(y), duel.get(alts.get(y)) - 1);
+                    } else {
+                        winsAlt--;
+                        duel.put(alts.get(y), duel.get(alts.get(y)) + 1);
+                    }
+                }
+                duel.put(alt, duel.get(alt) + winsAlt);
+            }
+        }
+        VotingRes res = new VotingRes();
+        res.setWinner(duel.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey());
+        res.setKoplendVotingRes(duel);
         return res;
     }
 

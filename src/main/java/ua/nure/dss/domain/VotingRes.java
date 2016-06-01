@@ -1,8 +1,3 @@
-/*
- * Canadian Tire Corporation, Ltd. Do not reproduce without permission in writing.
- * Copyright (c) 2016 Canadian Tire Corporation, Ltd. All rights reserved.
- */
-
 package ua.nure.dss.domain;
 
 import java.util.HashMap;
@@ -15,7 +10,8 @@ import java.util.Map;
 public class VotingRes {
 
     private Map<Lpr, Map<Alternative, Integer>> votingRes;
-    Map<Lpr, List<Alternative>> kondorseVotingRes;
+    private Map<Lpr, List<Alternative>> kondorseVotingRes;
+    private Map<Alternative, Integer> koplendVotingRes;
     private Map<Alternative, Integer> totalRes;
     private Alternative winner;
     private Integer points;
@@ -79,5 +75,13 @@ public class VotingRes {
 
     public void setKondorseVotingRes(Map<Lpr, List<Alternative>> kondorseVotingRes) {
         this.kondorseVotingRes = kondorseVotingRes;
+    }
+
+    public Map<Alternative, Integer> getKoplendVotingRes() {
+        return koplendVotingRes;
+    }
+
+    public void setKoplendVotingRes(Map<Alternative, Integer> koplendVotingRes) {
+        this.koplendVotingRes = koplendVotingRes;
     }
 }
